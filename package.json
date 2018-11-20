@@ -1,0 +1,20 @@
+{
+  "name": "monitoring-system",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Theophelus/-monitoring-system.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Theophelus/-monitoring-system/issues"
+  },
+  "homepage": "https://github.com/Theophelus/-monitoring-system#readme"
+}
