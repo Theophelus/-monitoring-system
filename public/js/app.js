@@ -53,7 +53,6 @@ let renderLatestRepos = new Vue({
                     }
                 })
     }
-
 });
 
 
