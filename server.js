@@ -172,6 +172,21 @@ app.get('/api/by/project/:name', function (req, res) {
                 error: error.stack
             })
         })
+}) 
+
+
+app.get('/api/get/users/for/codewars/:user',async function(req,res){
+    const {user}=req.params;
+    axios.get(`https://www.codewars.com/api/v1/users/${user}`)
+     .then(function(response){
+         
+     return res.json({success:true,data:response.data})
+     })
+     .catch(function () {
+        return res.json({
+            error: error.stack
+        })
+    })
 })
 
 

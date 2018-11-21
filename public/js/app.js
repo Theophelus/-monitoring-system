@@ -3,7 +3,7 @@
 let renderLatestRepos = new Vue({
     el: '.renderLatestRepos',
     data: {
-        repos: [],
+        repos: []
     },
     methods: {
         // display: function () {
