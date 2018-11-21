@@ -29,7 +29,7 @@ if (process.env.DATABASE_URL) {
 }
 
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/monitoringdb'
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:coder123@localhost:5432/monitoring_db'
 
 const pool = new Pool({
     connectionString,
@@ -122,6 +122,25 @@ app.get('/api/get/lastest/repos/:username', function (req, res) {
             })
         });
 });
+
+
+app.get('/api/by/project/:name', function (req,res){
+ const {name} = req.params;
+   axios.get(`https://api.github.com/users/mrBooi/repos`)
+   .then(function(response){
+       let projects = response.data;
+    for (let current of projects) {
+         let projectName =current.name;
+         if(projectName.includes(name)) {
+             return res.json({success:true,data:current});
+         }
+    }
+    //    return res.json(
+   })
+   .catch(function(){
+      return res.json({error:error.stack})
+   })
+})
 
 
 
