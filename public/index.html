@@ -98,7 +98,7 @@
                     <nav>
                         <ul class="nav">
                             <li><a href="#" class="active"><i class="lnr lnr-home">
-                                      
+
                                     </i>
                                     <span>Dashboard</span></a></li>
                             <li><a href="" class=""><i class="lnr lnr-code"></i> <span>Add Students</span></a></li>
@@ -137,16 +137,19 @@
                                         <tr>
                                             <th>#</th>
                                             <th>First Name</th>
-                                            <th>Last Name</th>
-                                            <th>Username</th>
+                                            <th>Project Name</th>
+                                            <th>Created At</th>
+                                            <th>Updated</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr v-for="repo in repos">
                                             <td>1</td>
                                             <td> {{repo.full_name}} </td>
-                                            <td>Jobs</td>
-                                            <td>@steve</td>
+                                            <td> {{repo.project_name}} </td>
+                                            <!-- <td>Jobs</td> -->
+                                            <td> {{repo.created_at}} </td>
+                                            <td> {{repo.updated_at}} </td>
                                         </tr>
                                     </tbody>
                                 </table>
