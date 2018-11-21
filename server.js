@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
+
 // const flash = require('express-flash');
 // const session = require('express-session');
 
@@ -56,7 +57,20 @@ app.get('/api/get/students', async function (req, res) {
     })
 })
 
-
+//Define an api to get all projects
+app.get('/api/get/projects', async (req, res) => {
+    let results = await pool.query('select * from products');
+    if (results.rowCount === 0) {
+        return res.json({
+            success: false,
+            data: []
+        })
+    }
+    return res.json({
+        success: true,
+        data: found.rows
+    });
+})
 app.get('/api/get/github/:username', async function (req, res) {
     const {
         username
