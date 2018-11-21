@@ -9,6 +9,7 @@ const app = express();
 let PORT = process.env.PORT || 3000;
 
 app.use(express.static('public'));
+// app.use(express.static(__dirname+'/public/'));
 // app.use(session({
 //     secret: 'keyboard cat',
 //     resave: false,
@@ -26,7 +27,8 @@ if (process.env.DATABASE_URL) {
     useSSL = true;
 }
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://coder:coder123@localhost:5432/monitoring_db'
+
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/monitoringdb'
 
 const pool = new Pool({
     connectionString,
@@ -80,8 +82,10 @@ app.get('/api/get/lastest/repos/:username', function (req, res) {
         username
     } = req.params;
     const assess = {
-        clientId: "e5007befceaf9ffeedb7",
-        clientSecret: "e74dda058d0f71ec28c2893504b29742a9a17461",
+        // clientId: "e5007befceaf9ffeedb7",
+        // clientSecret: "e74dda058d0f71ec28c2893504b29742a9a17461",
+        clientId: "5d92f07086bef1948fce",
+        clientSecret: "1a1ebb12a2eba9ac37dd93a6574bd7f5a93a857a",
         count: 1,
         sort: "created: asc",
         repos: []

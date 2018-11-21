@@ -18,3 +18,7 @@ github_username text not null,
 codewars_username text not null,
 joined_date DATE NOT NULL DEFAULT CURRENT_DATE
 );
+
+
+ INSERT into students(full_name, email, github_username, codewars_username, joined_date) values('Anele Tom','aneletom10@gmail.com','Theophelus','passwaord','2018-11-21');
+ INSERT into students(full_name, email, github_username, codewars_username, joined_date) values('Ayabonga Booi','ayabongabooi2@gmail.com','mrBooi','passwaord','2018-11-21');
