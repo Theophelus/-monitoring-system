@@ -42,6 +42,31 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
+app.post('/api/add/new/students', async function (req, res) {
+    try {
+        const {
+            full_name,
+            email,
+            github_username,
+            codewars_username
+        } = req.body;
+      console.log(email,full_name,github_username,codewars_username);
+        let isUserExists = await pool.query('SELECT * FROM students WHERE email=$1', [email]);
+        if (isUserExists.rowCount > 0) {
+            return res.json({
+                success: false,
+                msg: 'email already exits'
+            })
+        }
+        await pool.query(`INSERT INTO students 
+              (full_name,email,github_username,codewars_username)
+               VALUES ($1,$2,$3,$4)`, [full_name, email, github_username, codewars_username]);
+          return res.json({success:true,msg:`${full_name} is sucessfully added`})
+    } catch (error) {
+        console.log(error)
+    }
+    
+})
 
 app.get('/api/get/students', async function (req, res) {
     let found = await pool.query('SELECT * FROM students');
@@ -124,22 +149,29 @@ app.get('/api/get/lastest/repos/:username', function (req, res) {
 });
 
 
-app.get('/api/by/project/:name', function (req,res){
- const {name} = req.params;
-   axios.get(`https://api.github.com/users/mrBooi/repos`)
-   .then(function(response){
-       let projects = response.data;
-    for (let current of projects) {
-         let projectName =current.name;
-         if(projectName.includes(name)) {
-             return res.json({success:true,data:current});
-         }
-    }
-    //    return res.json(
-   })
-   .catch(function(){
-      return res.json({error:error.stack})
-   })
+app.get('/api/by/project/:name', function (req, res) {
+    const {
+        name
+    } = req.params;
+    axios.get(`https://api.github.com/users/mrBooi/repos`)
+        .then(function (response) {
+            let projects = response.data;
+            for (let current of projects) {
+                let projectName = current.name;
+                if (projectName.includes(name)) {
+                    return res.json({
+                        success: true,
+                        data: current
+                    });
+                }
+            }
+            //    return res.json(
+        })
+        .catch(function () {
+            return res.json({
+                error: error.stack
+            })
+        })
 })
 
 
