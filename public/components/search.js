@@ -11,7 +11,8 @@ Vue.component('search-project', {
         filterByProjects:  function (username,selected) { 
             let self = this; 
             axios.get(`/api/search/${username}/${selected}`)
-                .then(function (results) {
+                .then(function (results) { 
+                    console.log(results.data)
                     self.getProjects =[];
                     self.getProjects.push(results.data.data);
 

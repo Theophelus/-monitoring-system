@@ -190,16 +190,15 @@ app.get('/api/search/:username/:project_name', async function (req, res) {
     try {
         const response = await axios.get(`https://api.github.com/repos/${username}/${project_name}`);
         let projects = response.data;
-                console.log(projects);
-                return res.json({
-                    success: true,
-                    data: projects
-                });
-            
         
-        return {
-            success: false
-        }
+            let row = projects;
+            
+            return {
+                project_name: row.name,
+                full_name : row.full_name,
+                created_at : row.created_at
+            }
+                
 
     } catch (err) {
         return res.json({

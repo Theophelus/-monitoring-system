@@ -35,7 +35,7 @@ let app = new Vue ({
 
     methods: {
         // filterByProjects:  function (selected) { 
-        //     let self = this;
+           
         //     axios.get(`/api/by/project/${selected}`)
         //         .then(function (results) {
         //             self.getProjects =[];
@@ -44,7 +44,9 @@ let app = new Vue ({
         // },
         filteredForUser : function(projectsForUser) {
             alert("!")
-            // alert(projectsForUser);
+            let self = this;
+              self.userRepos = [];
+              self.userRepos.push(projectsForUser)
         }
 
     }
