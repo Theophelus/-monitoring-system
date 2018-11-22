@@ -131,19 +131,9 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">Striped Row</h3>
                             </div>
-                            <!-- <div class="dropdown filter" style="float: right; margin-top: -50px; margin-right: 30px;">
-                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
-                                    v-on:click="filterByProjects">
-                                    USERS PROJECTS
-                                    <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                    <li v-for="project in getProjects">
-                                        {{project.project_name}}
-                                    </li>
-                                </ul>
-                            </div> -->
+                           
                             <div class="dropdown filter" style="float: right; margin-top: -50px; margin-right: 30px;">
-                                <select v-model ="selected">
+                                <select  v-model ="selected">
                                     <option value="">Select Project</option>
                                     <option  v-for="project in getProjects" v-bind:value="project.project_keys" >
                                         {{project.project_name}}
@@ -151,30 +141,13 @@
                                 </select>
                                 <button v-on:click="filterByProjects(selected)" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown>Search">Search</button>
                             </div>
+                            
+                            <div id="renderLatestRepos">
+                                
+                               <lastest-repos v-bind:repos="userRepos" ></lastest-repos>
 
-                            <div class="panel-body">
-                                <table class="table table-striped renderLatestRepos">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Project Name</th>
-                                            <th>Created At</th>
-                                            <th>Updated</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="repo in repos">
-                                            <td>1</td>
-                                            <td> {{repo.full_name}} </td>
-                                            <td> {{repo.project_name}} </td>
-                                            <td> {{repo.created_at}} </td>
-                                            <td> {{repo.updated_at}} </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+
                             </div>
-
                         </div>
                     </div>
                     <!-- END MAIN CONTENT -->
@@ -192,7 +165,10 @@
             </div>
         </div>
         <!-- Javascript -->
-        <script src="../js/app.js"></script>
+        <script src="/components/table.js"></script>
+        <script src="/components/main.js"></script>
+
+        <!-- <script src="../js/app.js"></script> -->
         <script src="../vendor/jquery/jquery.min.js"></script>
         <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
         <script src="../vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
