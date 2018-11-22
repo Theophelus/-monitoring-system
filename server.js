@@ -29,7 +29,7 @@ if (process.env.DATABASE_URL) {
 }
 
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://coder:coder123@localhost:5432/monitoring_db'
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/monitoringdb'
 
 const pool = new Pool({
     connectionString,
@@ -59,17 +59,24 @@ app.get('/api/get/students', async function (req, res) {
 
 //Define an api to get all projects
 app.get('/api/get/projects', async (req, res) => {
-    let results = await pool.query('select * from products');
-    if (results.rowCount === 0) {
+    try {
+        let results = await pool.query('select * from projects');
+    
+        if (results.rowCount === 0) {
+            return res.json({
+                success: false,
+                data: []
+            })
+        }
         return res.json({
-            success: false,
-            data: []
-        })
+            success: true,
+            data: results.rows
+        });
+    } catch (error) {
+        console.log(error);
+        
     }
-    return res.json({
-        success: true,
-        data: found.rows
-    });
+  
 })
 app.get('/api/get/github/:username', async function (req, res) {
     const {
@@ -82,13 +89,12 @@ app.get('/api/get/github/:username', async function (req, res) {
             msg: 'user is not found'
         })
     }
-
     return res.json({
         success: true,
         data: found.rows[0].id
     })
-
 })
+
 
 // find all lastest repos for each user
 app.get('/api/get/lastest/repos/:username', function (req, res) {
@@ -96,10 +102,10 @@ app.get('/api/get/lastest/repos/:username', function (req, res) {
         username
     } = req.params;
     const assess = {
-        // clientId: "e5007befceaf9ffeedb7",
-        // clientSecret: "e74dda058d0f71ec28c2893504b29742a9a17461",
-        clientId: "5d92f07086bef1948fce",
-        clientSecret: "1a1ebb12a2eba9ac37dd93a6574bd7f5a93a857a",
+        clientId: "e5007befceaf9ffeedb7",
+        clientSecret: "e74dda058d0f71ec28c2893504b29742a9a17461",
+        // clientId: "5d92f07086bef1948fce",
+        // clientSecret: "1a1ebb12a2eba9ac37dd93a6574bd7f5a93a857a",
         count: 1,
         sort: "created: asc",
         repos: []
@@ -124,27 +130,28 @@ app.get('/api/get/lastest/repos/:username', function (req, res) {
 });
 
 
-app.get('/api/by/project/:name', function (req,res){
- const {name} = req.params;
-   axios.get(`https://api.github.com/users/mrBooi/repos`)
-   .then(function(response){
-       let projects = response.data;
-    for (let current of projects) {
-         let projectName =current.name;
-         if(projectName.includes(name)) {
-             return res.json({success:true,data:current});
-         }
-    }
-    //    return res.json(
-   })
-   .catch(function(){
-      return res.json({error:error.stack})
-   })
+app.get('/api/by/project/:name', function (req, res) {
+    const {name} = req.params;
+    axios.get(`https://api.github.com/users/mrBooi/repos`)
+        .then(function (response) {
+            let projects = response.data;
+            for (let current of projects) {
+                let projectName = current.name;
+                if (projectName.includes(name)) {
+                    return res.json({
+                        success: true,
+                        data: current
+                    });
+                }
+            }
+            //    return res.json(
+        })
+        .catch(function () {
+            return res.json({
+                error: error.stack
+            })
+        })
 })
-
-
-
-
 
 
 

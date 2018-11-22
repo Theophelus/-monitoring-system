@@ -23,19 +23,15 @@ CREATE TABLE students
 
 CREATE TABLE projects
 (
-    id serial not null Primary key,
+   id serial not null PRIMARY key,
     project_name text not null,
     date_created DATE NOT NULL DEFAULT CURRENT_DATE,
     project_keys text not null
 );
 
 
-insert into projects
-    (project_name, date_created, project_keys)
-values('Basic Web App', '2018-02-21', 'basic');
-insert into projects
-    (project_name, date_created, project_keys)
-values('Waiter App', '2018-02-21', 'waiter');
+insert into projects(project_name, date_created, project_keys) values('Basic Web App', '2018-02-21', 'basic');
+insert into projects(project_name, date_created, project_keys) values('Waiter App', '2018-02-21', 'waiter');
 
 INSERT into students
     (full_name, email, github_username, codewars_username, joined_date)
