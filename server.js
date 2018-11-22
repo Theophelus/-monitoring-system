@@ -2,22 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 
-// const flash = require('express-flash');
-// const session = require('express-session');
-
 const app = express();
 
 let PORT = process.env.PORT || 3000;
 
 app.use(express.static('public'));
-// app.use(express.static(__dirname+'/public/'));
-// app.use(session({
-//     secret: 'keyboard cat',
-//     resave: false,
-//     saveUninitialized: true
-// }));
 
-// app.use(flash());
 
 //database connection 
 const pg = require('pg');
@@ -27,7 +17,6 @@ let useSSL = false;
 if (process.env.DATABASE_URL) {
     useSSL = true;
 }
-
 
 const connectionString = process.env.DATABASE_URL || 'postgresql://coder:coder123@localhost:5432/monitoring_db'
 
@@ -116,7 +105,7 @@ app.get('/api/get/students', async function (req, res) {
     })
 })
 
-//Define an api to get all projects
+
 app.get('/api/get/projects', async (req, res) => {
     try {
         let results = await pool.query('select * from projects');
@@ -157,12 +146,10 @@ app.get('/api/get/github/:username', async function (req, res) {
 
 async function getLatestRepoForUser(username) {
     const assess = {
-        //e5007befceaf9ffeedb7
-        //e74dda058d0f71ec28c2893504b29742a9a17461
-        clientId: "5d92f07086bef1948fce",
-        clientSecret: "1a1ebb12a2eba9ac37dd93a6574bd7f5a93a857a",
-        // clientId: "5d92f07086bef1948fce",
-        // clientSecret: "1a1ebb12a2eba9ac37dd93a6574bd7f5a93a857a",
+       
+        clientId: "e5007befceaf9ffeedb7",
+        clientSecret: "9764dfb95f85a84fcc169e8ae5f2daedf86e1cec",
+      
         count: 1,
         sort: "created: asc",
         repos: []
@@ -196,23 +183,20 @@ app.get('/api/get/lastest/repos/:username', async function (req, res) {
 
 
 
-app.get('/api/by/project/:name', async function (req, res) {
+app.get('/api/search/:username/:project_name', async function (req, res) {
     const {
-        name
+        username,project_name
     } = req.params;
     try {
-        const response = await axios.get(`https://api.github.com/users/${name}/repos`);
+        const response = await axios.get(`https://api.github.com/repos/${username}/${project_name}`);
         let projects = response.data;
-        for (let current of projects) {
-            let projectName = current.name;
-            // ???
-            if (projectName.includes(name)) {
+                console.log(projects);
                 return res.json({
                     success: true,
-                    data: current
+                    data: projects
                 });
-            }
-        }
+            
+        
         return {
             success: false
         }
@@ -222,10 +206,6 @@ app.get('/api/by/project/:name', async function (req, res) {
             error: error.stack
         })
     }
-
-
-
-
 })
 
 app.get('/api/coderwars/users/rank/:users', function (req, res) {
