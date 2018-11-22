@@ -131,14 +131,27 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">Striped Row</h3>
                             </div>
-                            <div class="select" tabindex="1" style="float: right; margin-top: -50px; margin-right: 30px;">
-                                <input class="selectopt" name="test" type="radio" id="opt1" checked>
-                                <label for="opt1" class="option">Projects</label>
-                                <input class="selectopt" name="test" type="radio" id="opt1">
-                                <label for="opt1" class="option"></label>
-                                <input class="selectopt" name="test" type="radio" id="opt1">
-                                <label for="opt1" class="option"></label>
+                            <!-- <div class="dropdown filter" style="float: right; margin-top: -50px; margin-right: 30px;">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+                                    v-on:click="filterByProjects">
+                                    USERS PROJECTS
+                                    <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li v-for="project in getProjects">
+                                        {{project.project_name}}
+                                    </li>
+                                </ul>
+                            </div> -->
+                            <div class="dropdown filter" style="float: right; margin-top: -50px; margin-right: 30px;">
+                                <select v-model ="selected">
+                                    <option value="">Select Project</option>
+                                    <option  v-for="project in getProjects" v-bind:value="project.project_keys" >
+                                        {{project.project_name}}
+                                    </option>
+                                </select>
+                                <button v-on:click="filterByProjects(selected)" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown>Search">Search</button>
                             </div>
+
                             <div class="panel-body">
                                 <table class="table table-striped renderLatestRepos">
                                     <thead>
@@ -148,7 +161,6 @@
                                             <th>Project Name</th>
                                             <th>Created At</th>
                                             <th>Updated</th>
-                                            <!-- <th>Last Commit</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -156,10 +168,8 @@
                                             <td>1</td>
                                             <td> {{repo.full_name}} </td>
                                             <td> {{repo.project_name}} </td>
-                                            <!-- <td>Jobs</td> -->
                                             <td> {{repo.created_at}} </td>
                                             <td> {{repo.updated_at}} </td>
-                                            <!-- <td> {{repo.}} </td> -->
                                         </tr>
                                     </tbody>
                                 </table>
