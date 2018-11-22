@@ -47,6 +47,7 @@ let renderLatestRepos = new Vue({
         axios
             .get('/api/get/students')
             .then(function (results) {
+                console.log(results)
 
                 if (results.data.success) {
                     let repos = results.data.data;
@@ -54,7 +55,9 @@ let renderLatestRepos = new Vue({
                         axios
                             .get(`/api/get/lastest/repos/${current.github_username}`)
                             .then(function (results) {
+                                console.log(results)
                                 let name = results.data.lastestRepos[0].full_name.split('/');
+                              
                                 const {
                                     created_at,
                                     updated_at

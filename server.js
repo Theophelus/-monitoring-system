@@ -7,7 +7,7 @@ const axios = require('axios');
 
 const app = express();
 
-let PORT = process.env.PORT || 3000;
+let PORT = process.env.PORT || 3001;
 
 app.use(express.static('public'));
 // app.use(express.static(__dirname+'/public/'));
@@ -29,7 +29,7 @@ if (process.env.DATABASE_URL) {
 }
 
 
-const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/monitoringdb'
+const connectionString = process.env.DATABASE_URL || 'postgresql://trinesh:Trinesh1997@@localhost:5432/monitoringdb'
 
 const pool = new Pool({
     connectionString,
