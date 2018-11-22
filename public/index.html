@@ -134,7 +134,7 @@
                             <!-- <div class="dropdown filter" style="float: right; margin-top: -50px; margin-right: 30px;">
                                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
                                     v-on:click="filterByProjects">
-                                    USERS PROJECTS
+                                    USER PROJECTS
                                     <span class="caret"></span></button>
                                 <ul class="dropdown-menu">
                                     <li v-for="project in getProjects">
@@ -143,8 +143,8 @@
                                 </ul>
                             </div> -->
                             <div class="filter">
-                                <select v-model ="selected"> 
-                                    <option  v-for="project in getProjects" v-bind:value="project.project_keys" >
+                                <select v-model = "project.project_keys"> 
+                                    <option id="" v-for="project in getProjects"  v-bind:value="project.project_keys">
                                         {{project.project_name}}
                                     </option>
 
