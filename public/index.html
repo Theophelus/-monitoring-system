@@ -26,7 +26,12 @@
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="../css/main.css">
-    <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/util.css">
+
+
+    <!-- FOR DEMO PURP1OSES ONLY. You should remove this in your project -->
     <link rel="stylesheet" href="../css/demo.css">
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
@@ -131,54 +136,76 @@
                             <div class="panel-heading">
                                 <h3 class="panel-title">Striped Row</h3>
                             </div>
-                            <!-- <div class="dropdown filter" style="float: right; margin-top: -50px; margin-right: 30px;">
-                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
-                                    v-on:click="filterByProjects">
-                                    USER PROJECTS
-                                    <span class="caret"></span></button>
-                                <ul class="dropdown-menu">
-                                    <li v-for="project in getProjects">
-                                        {{project.project_name}}
-                                    </li>
-                                </ul>
-                            </div> -->
-                            <div class="filter">
-                                <select v-model = "project.project_keys"> 
-                                    <option id="" v-for="project in getProjects"  v-bind:value="project.project_keys">
+
+                            <div class="dropdown filter" style="float: right; margin-top: -50px; margin-right: 30px;">
+                                <select v-model="selected">
+                                    <option value="">Select Project</option>
+                                    <option v-for="project in getProjects" v-bind:value="project.project_keys">
                                         {{project.project_name}}
                                     </option>
-
                                 </select>
+                                <button v-on:click="filterByProjects(selected)" class="btn btn-primary dropdown-toggle"
+                                    type="button" data-toggle="dropdown>Search">Search</button>
                             </div>
 
-                            <div class="panel-body">
-                                <table class="table table-striped renderLatestRepos">
-                                    <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>First Name</th>
-                                            <th>Project Name</th>
-                                            <th>Created At</th>
-                                            <th>Updated</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr v-for="repo in repos">
-                                            <td>1</td>
-                                            <td> {{repo.full_name}} </td>
-                                            <td> {{repo.project_name}} </td>
-                                            <td> {{repo.created_at}} </td>
-                                            <td> {{repo.updated_at}} </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <div id="renderLatestRepos">
 
+                                <lastest-repos v-bind:repos="userRepos"></lastest-repos>
+
+
+                            </div>
                         </div>
                     </div>
                     <!-- END MAIN CONTENT -->
                 </div>
                 <!-- END MAIN -->
+                <!-- <div class="limiter">
+                    <div class="container-login100">
+                        <div class="wrap-login100">
+                            <div class="login100-form-title" style="background-image: url( ../images/bg-01.jpg);" >
+                                <span class="login100-form-title-1">
+                                    Sign In
+                                </span>
+                            </div>
+            
+                            <form class="login100-form validate-form">
+                                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                                    <span class="label-input100">Username</span>
+                                    <input class="input100" type="text" name="username" placeholder="Enter username">
+                                    <span class="focus-input100"></span>
+                                </div>
+            
+                                <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
+                                    <span class="label-input100">Password</span>
+                                    <input class="input100" type="password" name="pass" placeholder="Enter password">
+                                    <span class="focus-input100"></span>
+                                </div>
+            
+                                <div class="flex-sb-m w-full p-b-30">
+                                    <div class="contact100-form-checkbox">
+                                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+                                        <label class="label-checkbox100" for="ckb1">
+                                            Remember me
+                                        </label>
+                                    </div>
+            
+                                    <div>
+                                        <a href="#" class="txt1">
+                                            Forgot Password?
+                                        </a>
+                                    </div>
+                                </div>
+            
+                                <div class="container-login100-form-btn">
+                                    <button class="login100-form-btn">
+                                        Login
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div> -->
+                
                 <div class="clearfix"></div>
                 <footer>
                     <div class="container-fluid">
@@ -191,13 +218,18 @@
             </div>
         </div>
         <!-- Javascript -->
-        <script src="../js/app.js"></script>
+        <script src="/components/table.js"></script>
+        <script src="/components/main.js"></script>
+
+        <!-- <script src="../js/app.js"></script> -->
         <script src="../vendor/jquery/jquery.min.js"></script>
         <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
         <script src="../vendor/jquery-slimscroll/jquery.slimscroll.min.js"></script>
         <script src="../vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
         <script src="../vendor/chartist/js/chartist.min.js"></script>
         <script src="../scripts/klorofil-common.js"></script>
+        <script src="../js/main.js"></script>
+
 </body>
 
 </html>

@@ -45,7 +45,7 @@ let renderLatestRepos = new Vue({
     mounted: function () {
         let self = this;
         axios
-            .get('/api/get/students')
+            .get('/api/get/students/:project')
             .then(function (results) {
 
                 if (results.data.success) {
@@ -69,7 +69,7 @@ let renderLatestRepos = new Vue({
                             });
                     }
                 }
-            }),
+            });
 
             axios.get('/api/get/projects')
             .then(function (results) {
@@ -100,13 +100,11 @@ let filter = new Vue({
         project: ''
     },
     methods: {
-        filterByProjects: function () { 
-            console.log(this.selected)
+        filterByProjects:  function (selected) { 
             let self = this;
-            axios.get(`/api/by/project/basic`)
+            axios.get(`/api/by/project/${selected}`)
                 .then(function (results) {
                     self.getProjects =[];
-                    console.log(results.data.data);
                     self.getProjects.push(results.data.data)
                 });
         }
@@ -115,20 +113,6 @@ let filter = new Vue({
         let self = this;
 
     },
-    mounted: function () {
-        let self = this;
-        axios.get('/api/get/projects')
-            .then(function (results) {
-                if (results.data.success) {
-                    let data = results.data.data;
-                    for (const current of data) {
-                        console.log((current.project_name));
-                        self.getProjects.push(current)
-                    }
-                }
-            });
-
-
-    }
+    
 
 });

@@ -35,7 +35,7 @@ insert into projects(project_name, date_created, project_keys) values('Waiter Ap
 
 INSERT into students
     (full_name, email, github_username, codewars_username, joined_date)
-values('Anele Tom', 'aneletom10@gmail.com', 'Theophelus', 'passwaord', '2018-11-21');
+values('Anele Tom', 'aneletom10@gmail.com', 'Theophelus', 'nachowolf', '2018-11-21');
 INSERT into students
     (full_name, email, github_username, codewars_username, joined_date)
-values('Ayabonga Booi', 'ayabongabooi2@gmail.com', 'mrBooi', 'passwaord', '2018-11-21');
+values('Ayabonga Booi', 'ayabongabooi2@gmail.com', 'mrBooi', 'MrBooi', '2018-11-21');
