@@ -4,7 +4,8 @@ let search = new Vue({
     data: {
         selected:'',
         repos: [],
-        getProjects: []
+        getProjects: [],
+        hidepage:''
     },
   
     mounted: function () {
