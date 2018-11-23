@@ -2,9 +2,11 @@ let app = new Vue ({
     el: '#renderLatestRepos',    
     data: {
        userRepos : [],
-       project  : []
+       project  : [],
+       showRank : false,
+       showAdd : false,
+       showDashboard: true
     },
-
     mounted:  function() {
         let self = this;
       axios.get('/api/get/repos/latest')
@@ -34,14 +36,23 @@ let app = new Vue ({
     
 
     methods: {
-        // filterByProjects:  function (selected) { 
-           
-        //     axios.get(`/api/by/project/${selected}`)
-        //         .then(function (results) {
-        //             self.getProjects =[];
-        //             self.getProjects.push(results.data.data)
-        //         });
-        // },
+        dashBoard: function(){
+            this.showDashboard = true;
+            this.showAdd = false;
+            this.showRank =false; 
+        },
+
+        addStudents: function() {
+            this.showDashboard = false;
+            this.showAdd = false;
+            this.showRank =false;
+            
+        },
+        studentsRank: function() {
+            this.showDashboard = false;
+            this.showAdd = false;
+            this.showRank =false;
+        },
         filteredForUser : function(projectsForUser) {
             alert("!")
             let self = this;

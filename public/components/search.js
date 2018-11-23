@@ -5,6 +5,8 @@ Vue.component('search-project', {
             getProjects:[],
             selected: 'hello',
             username : '',
+
+            
         }
     },
     methods: {

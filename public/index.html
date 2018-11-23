@@ -39,8 +39,10 @@
 
 
 
-<body>
+<body> 
+     
     <div class="">
+            <div id="renderLatestRepos">
         <div id="wrapper">
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="brand">
@@ -97,23 +99,15 @@
                 <div class="sidebar-scroll">
                     <nav>
                         <ul class="nav">
-                            <li><a href="#" class="active"><i class="lnr lnr-home">
+                            <li><a href="#"  v-on:click="dashBoard" ><i class="lnr lnr-home">
 
                                     </i>
                                     <span>Dashboard</span></a></li>
-                            <li><a href="" class=""><i class="lnr lnr-code"></i> <span>Add Students</span></a></li>
-                            <li><a href="" class=""><i class="lnr lnr-chart-bars"></i> <span>Ranks</span></a></li>
+                            <li><a href="#" class="" v-on:click="addStudents"><i class="lnr lnr-code"></i> <span>Add Students</span></a></li>
+                            <li><a href="#" class="" v-on:click="studentsRank" ><i class="lnr lnr-chart-bars"></i> <span>Ranks</span></a></li>
                             <li><a href="" class=""><i class="lnr lnr-cog"></i> <span>Groups</span></a></li>
                             <li><a href="" class=""><i class="lnr lnr-alarm"></i> <span>News feeds</span></a></li>
                             <li>
-                                <!-- <a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a> -->
-                                <!-- <div id="subPages" class="collapse ">
-                                        <ul class="nav">
-                                            <li><a href="page-profile.html" class="">Profile</a></li>
-                                            <li><a href="page-login.html" class="">Login</a></li>
-                                            <li><a href="page-lockscreen.html" class="">Lockscreen</a></li>
-                                        </ul>
-                                    </div> -->
                             </li>
 
                         </ul>
@@ -128,17 +122,14 @@
                     <div class="container-fluid">
                         <div class="panel">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Striped Row</h3>
-                            </div>
-                   
-                            
-                   
-                            <div id="renderLatestRepos">
-                                <search-project  v-bind:repos="project" v-on:filtered="filteredForUser" ></search-project>
-                                <lastest-repos v-bind:repos="userRepos" ></lastest-repos>
-                                <add-students></add-students>
+                                <h3 class="panel-title">404 Founders</h3>
+                            </div>                  
+                            <!-- <div id="renderLatestRepos"> -->
+                                <search-project  v-bind:repos="project" v-on:filtered="filteredForUser" v-if='showDashboard'  ></search-project>
+                                <lastest-repos v-bind:repos="userRepos" v-if='showDashboard' ></lastest-repos>
+                                <add-students v-if='showAdd'></add-students>
                   
-                           </div>
+                           <!-- </div> -->
                         </div>
                     </div>
                    
@@ -156,6 +147,8 @@
                 </footer>
             </div>
         </div>
+    </div>
+  
         <!-- Javascript -->
         <script src="/components/search.js"></script>
         <script src="/components/addStudent.js"></script>
