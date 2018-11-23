@@ -1,47 +1,12 @@
-let renderLatestRepos = new Vue({
-    el: '.renderLatestRepos',
+let search = new Vue({
+    el: '.search',
 
     data: {
-        
+        selected:'',
         repos: [],
         getProjects: []
     },
-    // methods: {
-    // display: function () {
-    //     let self = this;
-    //     axios
-    //         .get('/api/get/students')
-    //         .then(function (results) {
-    //             if (results.data.success) {
-    //                 let repos = results.data.data;
-    //                 for (let current of repos) {
-    //                     axios
-    //                         .get(`/api/get/lastest/repos/${current.github_username}`)
-    //                         .then(function (results) {
-    //                             self.repos.push(results.data.lastestRepos[0]);
-    //                         });
-    //                 }
-    //             }
-    //         })
-
-    // }
-    // },
-    // methods: {
-    //     projects: function () {
-    //         // let self = this;
-    //         // axios.get('/api/get/projects')
-    //         //     .then((results) => {
-    //         //         // console.log(results.data);
-    //         //         if (results.data.success) {
-    //         //             getProjects.push(self.project_name)
-    //         //         }
-    //         //     });
-    //     }
-    // },
-    // mounted: function () {
-    //     let self = this;
-
-    // },
+  
     mounted: function () {
         let self = this;
         axios
@@ -110,9 +75,6 @@ let filter = new Vue({
         }
     },
     mounted: function () {
-        let self = this;
-
+       
     },
-    
-
 });

@@ -2,22 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 
-// const flash = require('express-flash');
-// const session = require('express-session');
-
 const app = express();
 
 let PORT = process.env.PORT || 3000;
 
 app.use(express.static('public'));
-// app.use(express.static(__dirname+'/public/'));
-// app.use(session({
-//     secret: 'keyboard cat',
-//     resave: false,
-//     saveUninitialized: true
-// }));
 
-// app.use(flash());
 
 //database connection 
 const pg = require('pg');
@@ -27,7 +17,6 @@ let useSSL = false;
 if (process.env.DATABASE_URL) {
     useSSL = true;
 }
-
 
 const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/monitoringdb'
 
@@ -117,7 +106,7 @@ app.get('/api/get/students', async function (req, res) {
     })
 })
 
-//Define an api to get all projects
+
 app.get('/api/get/projects', async (req, res) => {
     try {
         let results = await pool.query('select * from projects');
@@ -197,36 +186,28 @@ app.get('/api/get/lastest/repos/:username', async function (req, res) {
 
 
 
-app.get('/api/by/project/:name', async function (req, res) {
+app.get('/api/search/:username/:project_name', async function (req, res) {
     const {
-        name
+        username,project_name
     } = req.params;
     try {
-        const response = await axios.get(`https://api.github.com/users/${name}/repos`);
+        const response = await axios.get(`https://api.github.com/repos/${username}/${project_name}`);
         let projects = response.data;
-        for (let current of projects) {
-            let projectName = current.name;
-            // ???
-            if (projectName.includes(name)) {
-                return res.json({
-                    success: true,
-                    data: current
-                });
+        
+            let row = projects;
+            
+            return {
+                project_name: row.name,
+                full_name : row.full_name,
+                created_at : row.created_at
             }
-        }
-        return {
-            success: false
-        }
+                
 
     } catch (err) {
         return res.json({
             error: error.stack
         })
     }
-
-
-
-
 })
 
 app.get('/api/coderwars/users/rank/:users', function (req, res) {
