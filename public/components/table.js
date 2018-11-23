@@ -43,12 +43,11 @@ Vue.component('lastest-repos', {
                 <th>First Name</th>
                 <th>Project Name</th>
                 <th>Created At</th>
-                <th>Updated</th>
             </tr>
         </thead>
         <tbody>
             <tr v-for="repo in repos">
-                <td>1</td>
+                <td>#</td>
                 <td> {{repo.full_name}} </td>
                 <td> {{repo.project_name}} </td>
                 <td> {{repo.created_at}} </td>
