@@ -32,6 +32,7 @@ Vue.component('lastest-repos', {
 
 
     },
+
     template: `
     <div class="panel-body">
     

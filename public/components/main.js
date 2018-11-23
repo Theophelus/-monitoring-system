@@ -1,8 +1,9 @@
-let app = new Vue ({
-    el: '#renderLatestRepos',    
+let app = new Vue({
+    el: '#renderLatestRepos',
     data: {
        userRepos : [],
        project  : [],
+       userRank:[],
        showRank : false,
        showAdd : false,
        showDashboard: true
@@ -18,15 +19,23 @@ let app = new Vue ({
                     }
                 }
             });
-            
-            axios.get('/api/get/projects')
-            .then(function(response){
-              if (response.data.success) {
-                for (const current of response.data.data) {
-                    self.project.push(current)
-                }
-              }
-            })
+
+            axios.get('/api/coderwars/users/rank/MrBooi')
+                .then(function (results) {
+                    if (results.data.success) {
+                        let data = results.data.data;
+    
+                        let getWars = {
+                            username: data.name,
+                            TotolCompeted: data.codeChallenges.totalCompleted,
+                            honor: data.honor,
+                        }
+                       
+                        self.userRank.push(getWars)
+    
+                    }
+                    
+                })
     },
     
    
@@ -44,14 +53,14 @@ let app = new Vue ({
 
         addStudents: function() {
             this.showDashboard = false;
-            this.showAdd = false;
+            this.showAdd = true;
             this.showRank =false;
             
         },
         studentsRank: function() {
             this.showDashboard = false;
             this.showAdd = false;
-            this.showRank =false;
+            this.showRank =true;
         },
         filteredForUser : function(projectsForUser) {
             alert("!")

@@ -128,7 +128,7 @@
                                 <search-project  v-bind:repos="project" v-on:filtered="filteredForUser" v-if='showDashboard'  ></search-project>
                                 <lastest-repos v-bind:repos="userRepos" v-if='showDashboard' ></lastest-repos>
                                 <add-students v-if='showAdd'></add-students>
-                  
+                                <rank-wars v-if='showRank'> </rank-wars>
                            <!-- </div> -->
                         </div>
                     </div>
@@ -152,6 +152,7 @@
         <!-- Javascript -->
         <script src="/components/search.js"></script>
         <script src="/components/addStudent.js"></script>
+        <script src="/components/rank.js"></script>
         <script src="/components/table.js"></script>
         
         <script src="/components/main.js"></script>

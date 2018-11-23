@@ -31,6 +31,7 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
+
 app.post('/api/add/new/students', async function (req, res) {
     try {
         const {
@@ -38,12 +39,12 @@ app.post('/api/add/new/students', async function (req, res) {
             email,
             github_username,
             codewars_username
-        } = req.body;
-
+        } = req.body.data;
+         console.log(req.body.data);
         let isUserExists = await pool.query('SELECT * FROM students WHERE email=$1', [email]);
         if (isUserExists.rowCount > 0) {
             return res.json({
-                success: false,
+               success: false,
                 msg: 'email already exits'
             })
         }
@@ -56,8 +57,8 @@ app.post('/api/add/new/students', async function (req, res) {
         })
     } catch (error) {
         console.log(error)
-    }
-
+      }
+ 
 })
 
 app.get('/api/get/repos/latest', async function (req, res) {
