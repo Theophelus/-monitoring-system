@@ -150,15 +150,15 @@
 
                             <div id="renderLatestRepos">
 
-                                <lastest-repos v-bind:repos="userRepos"></lastest-repos>
-
-
+                                <!-- <lastest-repos v-bind:repos="userRepos"></lastest-repos> -->
+                                <rank-wars  v-bind:rank="userRank"></rank-wars>
+                                
                             </div>
                         </div>
                     </div>
                     <!-- END MAIN CONTENT -->
                 </div>
-                <!-- END MAIN -->
+                <!-- END MAIN --
                 
                 
                 <div class="clearfix"></div>
@@ -174,8 +174,8 @@
         </div>
         <!-- Javascript -->
         <script src="/components/table.js"></script>
+        <script src="/components/rank.js"></script>
         <script src="/components/main.js"></script>
-
         <!-- <script src="../js/app.js"></script> -->
         <script src="../vendor/jquery/jquery.min.js"></script>
         <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
