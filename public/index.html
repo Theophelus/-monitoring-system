@@ -18,6 +18,89 @@
     <link rel="stylesheet" href="../vendor/linearicons/style.css">
     <link rel="stylesheet" href="../vendor/chartist/css/chartist-custom.css">
 
+    <!--Style for Sign UP Students-->
+    <style type="text/css">
+        .form-control, .form-control:focus {
+            border-color: #e1e1e1;
+            border-radius: 0;
+        }
+        .signup-form {
+            width: 390px;
+            margin: 0 auto;
+            padding: 30px 0;
+        }
+        .signup-form h2 {
+            color: #636363;
+            margin: 0 0 15px;
+            text-align: center;
+        }
+        .signup-form .lead {
+            font-size: 14px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .signup-form form {		
+            border-radius: 1px;
+            margin-bottom: 15px;
+            background: #fff;
+            border: 1px solid #f3f3f3;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+        .signup-form .form-group {
+            margin-bottom: 20px;
+        }
+        .signup-form label {
+            font-weight: normal;
+            font-size: 13px;
+        }
+        .signup-form .form-control {
+            min-height: 38px;
+            box-shadow: none !important;
+            border-width: 0 0 1px 0;
+        }	
+        .signup-form .input-group-addon {
+            max-width: 42px;
+            text-align: center;
+            background: none;
+            border-width: 0 0 1px 0;
+            padding-left: 5px;
+        }
+        .signup-form .btn {        
+            font-size: 16px;
+            font-weight: bold;
+            background: #19aa8d;
+            border-radius: 3px;
+            border: none;
+            min-width: 140px;
+            outline: none !important;
+        }
+        .signup-form .btn:hover, .signup-form .btn:focus {
+            background: #179b81;
+        }
+        .signup-form a {
+            color: #19aa8d;
+            text-decoration: none;
+        }	
+        .signup-form a:hover {
+            text-decoration: underline;
+        }
+        .signup-form .fa {
+            font-size: 21px;
+        }
+        .signup-form .fa-paper-plane {
+            font-size: 17px;
+        }
+        .signup-form .fa-check {
+            color: #fff;
+            left: 9px;
+            top: 18px;
+            font-size: 7px;
+            position: absolute;
+        }
+    </style>
+
+
 
     <!--  FJavaScript     -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
@@ -149,9 +232,9 @@
                             </div>
 
                             <div id="renderLatestRepos">
-
                                 <!-- <lastest-repos v-bind:repos="userRepos"></lastest-repos> -->
                                 <rank-wars  v-bind:rank="userRank"></rank-wars>
+                                <add-students></add-students>
                                 
                             </div>
                         </div>
@@ -176,6 +259,7 @@
         <script src="/components/table.js"></script>
         <script src="/components/rank.js"></script>
         <script src="/components/main.js"></script>
+        <script src="/components/addStudent.js"></script>
         <!-- <script src="../js/app.js"></script> -->
         <script src="../vendor/jquery/jquery.min.js"></script>
         <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
